@@ -6,7 +6,7 @@ const Navbar = () => {
 
     return (
       <nav>  
-        <div className="navbar bg-secondary w-full shadow-md">
+        <div className="navbar fixed z-10 bg-secondary w-full shadow-md">
             <div className="flex-1">
                 <a className="btn btn-ghost normal-case text-xl">Notes App</a>
             </div>

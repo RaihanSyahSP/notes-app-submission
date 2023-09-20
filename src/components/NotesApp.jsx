@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import NotesInput from "./NotesInput"
 import { getInitialData } from "../utils/data"
+import NotesContainer from "./NotesContainer"
 
 const NotesApp = () => {
     
@@ -19,6 +20,13 @@ const NotesApp = () => {
         })
     }
 
+    const onDeleteNoteHandler = (id) => {
+        console.log(id)
+        setNotes(prevState => {
+            return prevState.filter(note => note.id !== id)
+        })
+    }
+
     useEffect(() => {
         console.log(notes)
     }, [notes])
@@ -26,7 +34,8 @@ const NotesApp = () => {
   return (
     <div className="mx-auto h-screen">
         <Navbar />
-        <NotesInput addNotes={onAddNotesHandler}/>
+        <NotesInput addNotes={onAddNotesHandler} />
+        <NotesContainer notes={notes} deleteHandler={onDeleteNoteHandler} />
     </div>
   )
 }

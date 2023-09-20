@@ -44,6 +44,7 @@ const NotesInput = ({addNotes}) => {
                     value={title}
                     onChange={onTitleChangeHandler}
                     className="input input-bordered input-secondary w-full max-w-lg" 
+                    required
                 />
                   <label className="label" htmlFor="notes">
                     <span className="label-text text-xl lg:text-2xl">Note</span>
@@ -54,6 +55,7 @@ const NotesInput = ({addNotes}) => {
                     placeholder="Type notes here"
                     value={body}
                     onChange={onBodyChangeHandler}  
+                    required
                 >             
                 </textarea>
                 <button className="btn btn-secondary mt-5" type="submit">Add</button>
