@@ -27,15 +27,34 @@ const NotesApp = () => {
         })
     }
 
+    const onArchivedNoteHandler = (id) => {
+        console.log(id)
+        setNotes(prevState => {
+            return prevState.map(note => {
+                if(note.id === id) {
+                    return {
+                        ...note,
+                        archived: !note.archived
+                    }
+                }
+                return note
+            })
+        })
+    }
+
     useEffect(() => {
         console.log(notes)
     }, [notes])
 
   return (
     <div className="mx-auto h-screen">
-        <Navbar />
-        <NotesInput addNotes={onAddNotesHandler} />
-        <NotesContainer notes={notes} deleteHandler={onDeleteNoteHandler} />
+      <Navbar />
+      <NotesInput addNotes={onAddNotesHandler} />
+      <NotesContainer
+        notes={notes}
+        deleteHandler={onDeleteNoteHandler}
+        archivedHandler={onArchivedNoteHandler}
+      />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import NotesItem from './NotesItem'
 
-const NotesList = ({ notes, deleteHandler }) => {
+const NotesList = ({ notes, deleteHandler, archivedHandler }) => {
     return (
         <div className='grid grid-cols-2 gap-6'>
             {notes.map(note => (
@@ -13,6 +13,7 @@ const NotesList = ({ notes, deleteHandler }) => {
                     createdAt={note.createdAt}
                     archived={note.archived}
                     deleteHandler={deleteHandler}
+                    archivedHandler={archivedHandler}
                 />
             ))}                            
         </div>
