@@ -4,7 +4,7 @@ import { showFormattedDate } from '../utils/data';
 
 const NotesItem = ({ id, title, body, createdAt, archivedHandler, archived, deleteHandler }) => {
 	return (
-    <div className="card w-full shadow-2xl mt-10 bg-base-100 border hover:border-secondary hover:cursor-pointer" key={id}>
+    <div className="card w-full shadow-2xl mt-5 bg-base-100 border hover:border-secondary hover:cursor-pointer" key={id}>
       <div className="card-body p-5">
         <h2 className="card-title">{title}</h2>
         <p>{showFormattedDate(createdAt)}</p>

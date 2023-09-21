@@ -4,9 +4,20 @@ import { useState } from "react"
 const NotesInput = ({addNotes}) => {    
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
+    const [limitInputChar, setLimitInputChar] = useState(50)
 
     const onTitleChangeHandler = (e) => {
-        setTitle(e.target.value)
+        const newTitle = e.target.value;
+        if (newTitle.length <= 50) {
+          setTitle(newTitle);
+          const remainingChars = 50 - newTitle.length;
+          setLimitInputChar(remainingChars);
+        } else {
+          // Jika panjang judul melebihi 50 karakter, potong menjadi 50 karakter
+          const trimmedTitle = newTitle.slice(0, 50);
+          setTitle(trimmedTitle);
+          setLimitInputChar(0);
+        }
     }
 
     const onBodyChangeHandler = (e) => {
@@ -25,9 +36,10 @@ const NotesInput = ({addNotes}) => {
         setBody("")
     }
     
+    
 
   return (
-      <div className="flex border border-red-300 max-w-screen mx-auto gap-8 px-5 items-center justify-between h-screen xl:px-24">
+      <div className="flex max-w-screen mx-auto gap-8 px-5 items-center justify-between h-screen xl:px-24">
         <div className="hidden w-[45opx] px-10 md:block">
             <img src="../public/write.svg" width="450px"></img>  
         </div>
@@ -35,7 +47,8 @@ const NotesInput = ({addNotes}) => {
             <h1 className="text-2xl lg:text-4xl">Add Note</h1>
             <form className="form-control w-full max-w-lg" onSubmit={onFormSubmitHandler}>
                 <label className="label" htmlFor="title">
-                    <span className="label-text text-xl lg:text-2xl">Title</span>
+                      <span className="label-text text-xl lg:text-2xl">Title</span>
+                      <span className="label-text-alt">Characters left : { limitInputChar }</span>
                 </label>
                 <input 
                     type="text" 
@@ -46,7 +59,16 @@ const NotesInput = ({addNotes}) => {
                     className="input input-bordered input-secondary w-full max-w-lg" 
                     required
                 />
-                  <label className="label" htmlFor="notes">
+                  <label className="label">
+                      {
+                            limitInputChar === 0 && (
+                                <span className="label-text-alt text-red-500">Characters limit exceeded</span>
+                            )
+                      }
+                </label> 
+
+
+                <label className="label" htmlFor="notes">
                     <span className="label-text text-xl lg:text-2xl">Note</span>
                 </label>
                 <textarea 

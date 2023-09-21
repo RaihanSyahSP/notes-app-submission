@@ -9,8 +9,9 @@ const NotesContainer = ({ notes, deleteHandler, archivedHandler }) => {
   // Filter catatan yang memiliki archived === false
   const unarchivedNotes = notes.filter((note) => !note.archived);
   return (
-    <div className="grid grid-cols-2 gap-6 h-[100vh] px-10">
+    <div className="grid grid-cols-2 gap-6 h-[100vh] mt-5 px-10">
       <div className="col-span-1">
+        <h2 className='text-5xl font-bold'>Notes</h2>
         {unarchivedNotes.length > 0 ? (
           <NotesList notes={unarchivedNotes} deleteHandler={deleteHandler} archivedHandler={archivedHandler} />
         ) : (
@@ -18,6 +19,7 @@ const NotesContainer = ({ notes, deleteHandler, archivedHandler }) => {
         )}
       </div>
       <div className="col-span-1">
+        <h2 className='text-5xl font-bold'>Archived Notes</h2>
         {archivedNotes.length > 0 ? (
           <NotesList notes={archivedNotes} deleteHandler={deleteHandler} archivedHandler={archivedHandler} />
         ) : (
