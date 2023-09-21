@@ -7,9 +7,9 @@ const NotesContainer = ({ notes, deleteHandler, archivedHandler }) => {
   const unarchivedNotes = notes.filter((note) => !note.archived);
   
   return (
-    <div className="grid grid-cols-2 gap-6 h-[100vh] mt-5 px-10">
+    <div className="grid grid-cols-1 gap-6 h-[100vh] mt-5 px-4 lg:px-10 lg:grid-cols-2">
       <div className="col-span-1">
-        <h2 className='text-5xl font-bold text-center'>Notes</h2>
+        <h2 className='text-3xl font-bold text-center md:text-5xl'>Notes</h2>
         {unarchivedNotes.length > 0 ? (
           <NotesList notes={unarchivedNotes} deleteHandler={deleteHandler} archivedHandler={archivedHandler} />
         ) : (
@@ -17,7 +17,7 @@ const NotesContainer = ({ notes, deleteHandler, archivedHandler }) => {
         )}
       </div>
       <div className="col-span-1">
-        <h2 className='text-5xl font-bold text-center'>Archived Notes</h2>
+        <h2 className='text-3xl font-bold text-center md:text-5xl'>Archived Notes</h2>
         {archivedNotes.length > 0 ? (
           <NotesList notes={archivedNotes} deleteHandler={deleteHandler} archivedHandler={archivedHandler} />
         ) : (
