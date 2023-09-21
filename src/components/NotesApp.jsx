@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import { useSnackbar } from "notistack";
 import Navbar from "./Navbar"
 import NotesInput from "./NotesInput"
 import { getInitialData } from "../utils/data"
@@ -7,6 +8,7 @@ import NotesContainer from "./NotesContainer"
 const NotesApp = () => {
     const [initialNotes, setInitialNotes] = useState(getInitialData());
     const [notes, setNotes] = useState(initialNotes)
+    const { enqueueSnackbar } = useSnackbar();
 
     const onAddNotesHandler = ({title, body, createdAt, archived}) => {
       const newNote = {
@@ -19,6 +21,7 @@ const NotesApp = () => {
 
       setNotes((prevState) => [...prevState, newNote]);
       setInitialNotes((prevInitialNotes) => [...prevInitialNotes, newNote]);
+      enqueueSnackbar("Note added successfully", { variant: "success" });
     }
 
     const onDeleteNoteHandler = (id) => {
@@ -29,6 +32,7 @@ const NotesApp = () => {
       setInitialNotes(prevState => {
           return prevState.filter(note => note.id !== id)
       })
+      enqueueSnackbar("Note deleted successfully", { variant: "success" });
     }
 
     const onArchivedNoteHandler = (id) => {
@@ -55,6 +59,7 @@ const NotesApp = () => {
             return note
         })
       })
+      enqueueSnackbar("Note archived successfully", { variant: "success" });
     }
 
     const onSearchHandler = (search) => {
@@ -63,8 +68,7 @@ const NotesApp = () => {
         return prevState.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()));
       });
     };
-
-
+    
     useEffect(() => {
       console.log(notes)
       console.log(initialNotes)
