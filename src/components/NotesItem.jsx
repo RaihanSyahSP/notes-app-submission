@@ -1,5 +1,6 @@
 import React from 'react'
 import { showFormattedDate } from '../utils/data';
+import Modal from './Modal';
 
 
 const NotesItem = ({ id, title, body, createdAt, archivedHandler, archived, deleteHandler }) => {
@@ -13,22 +14,7 @@ const NotesItem = ({ id, title, body, createdAt, archivedHandler, archived, dele
           <button className="btn btn-error" onClick={() => document.getElementById(id).showModal()}>
             Delete
           </button>
-          <dialog id={id} className="modal modal-bottom sm:modal-middle">
-            <div className="modal-box">
-              <h3 className="font-bold text-lg">Warning</h3>
-							<p className="py-4">Are you sure want to delete <span className='text-lg font-bold'>{ title }</span> note?</p>
-              <div className="modal-action">
-                <form method="dialog">
-                  <div className="flex gap-2">
-                    <button className="btn btn-error" onClick={() => deleteHandler(id)}>
-                      Delete
-                    </button>
-                    <button className="btn">Close</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </dialog>
+          <Modal id={id} title={title} deleteHandler={deleteHandler} />
 					<button className="btn btn-warning" onClick={() => archivedHandler(id)}>
 						{archived ? "Unarchive" : "Archive"}
 					</button>
