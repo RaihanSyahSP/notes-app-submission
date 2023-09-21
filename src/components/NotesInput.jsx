@@ -13,7 +13,6 @@ const NotesInput = ({addNotes}) => {
           const remainingChars = 50 - newTitle.length;
           setLimitInputChar(remainingChars);
         } else {
-          // Jika panjang judul melebihi 50 karakter, potong menjadi 50 karakter
           const trimmedTitle = newTitle.slice(0, 50);
           setTitle(trimmedTitle);
           setLimitInputChar(0);
@@ -33,7 +32,8 @@ const NotesInput = ({addNotes}) => {
             archived: false
         })
         setTitle("")
-        setBody("")
+				setBody("")
+				setLimitInputChar(50)
     }
     
     

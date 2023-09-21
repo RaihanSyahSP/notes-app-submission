@@ -1,7 +1,9 @@
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
+
     const inputSearchChangeHandler = (e) => {
-        console.log(e.target.value);
+      onSearch(e.target.value)
     }
 
     return (
@@ -15,7 +17,7 @@ const Navbar = () => {
                     <input 
                         type="text" 
                         placeholder="Search" 
-                        className="input input-bordered w-24 md:w-auto" 
+                        className="input input-bordered w-24 md:w-auto"
                         onChange={inputSearchChangeHandler}
                     />
                 </div>
