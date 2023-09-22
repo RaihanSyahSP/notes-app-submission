@@ -41,7 +41,7 @@ const NotesInput = ({addNotes}) => {
   return (
       <div className="flex max-w-screen mx-auto gap-8 px-5 items-center justify-between h-screen xl:px-24">
         <div className="hidden w-[45opx] px-10 md:block">
-            <img src="../public/write.svg" width="450px"></img>  
+            <img src="/write.svg" width="450px"></img>  
         </div>
 				<aside className="flex flex-col font-semibold w-full mx-auto items-center lg:w-[450px] ">
 					<h1 className="text-2xl font-bold lg:text-5xl">Add Note</h1>
