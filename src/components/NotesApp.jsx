@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useState } from "react"
 import { useSnackbar } from "notistack";
 import Navbar from "./Navbar"
 import NotesInput from "./NotesInput"
@@ -25,13 +25,8 @@ const NotesApp = () => {
     }
 
     const onDeleteNoteHandler = (id) => {
-      setNotes(prevState => {
-          return prevState.filter(note => note.id !== id)
-      })
-
-      setInitialNotes(prevState => {
-          return prevState.filter(note => note.id !== id)
-      })
+      setNotes((prevState) => (prevState.filter((note) => note.id !== id)));
+      setInitialNotes((prevInitialNotes) => (prevInitialNotes.filter((note) => note.id !== id)));
       enqueueSnackbar("Note deleted successfully", { variant: "success" });
     }
 
@@ -69,10 +64,6 @@ const NotesApp = () => {
       });
     };
     
-    useEffect(() => {
-      console.log(notes)
-      console.log(initialNotes)
-    }, [notes, initialNotes])
 
   return (
     <div className="mx-auto h-screen">
